@@ -1,0 +1,8 @@
+node_modules/
+issue0x.config.json
+issue0x-state.json
+*.key
+.key
+wallet.key
+.env
+.DS_Store

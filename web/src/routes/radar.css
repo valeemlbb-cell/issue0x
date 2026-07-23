@@ -1,0 +1,679 @@
+.radar {
+  padding-block: var(--s-7) var(--s-9);
+  display: grid;
+  gap: var(--s-6);
+}
+
+/* ---------- Head ---------- */
+
+.radar__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+.radar__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: var(--s-4);
+}
+.radar__head h1 {
+  font-size: var(--text-3xl);
+}
+.radar__head h1 em {
+  font-style: italic;
+  color: var(--indigo);
+}
+.radar__head .prose {
+  margin-top: var(--s-4);
+}
+
+/* Deep-scan meta strip — scope, freshness, source. */
+.radar__meta {
+  margin-top: var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.radar__metadot {
+  color: var(--ink-3);
+  opacity: 0.7;
+}
+.radar__src {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 2px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+}
+.radar__srcdot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--ink-3);
+}
+.radar__src.is-live {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo), transparent 55%);
+}
+.radar__src.is-live .radar__srcdot {
+  background: var(--indigo);
+}
+
+.radar__livetag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+}
+.radar__livetag.is-sim {
+  color: var(--ink-3);
+}
+.radar__livedot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-pill);
+  background: var(--indigo); /* live/active = lime, never amber (amber = a win) */
+}
+.radar__livetag.is-sim .radar__livedot {
+  background: var(--ink-3);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .radar__livetag.is-live .radar__livedot {
+    animation: radarpulse 2.2s var(--ease-out) infinite;
+  }
+  .radar__livetag.is-live .radar__livedot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--indigo);
+    animation: radarring 2.2s var(--ease-out) infinite;
+  }
+}
+@keyframes radarpulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes radarring {
+  0% { transform: scale(0.5); opacity: 0.7; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ---------- Price tape ---------- */
+
+.radar__tape {
+  min-width: 0; /* grid item: allow shrink below the ticker's max-content width */
+  overflow: hidden; /* clip the scrolling tape; keeps it from blowing out the grid */
+  margin-inline: calc(var(--gutter) * -1);
+  border-block: 1px solid var(--rule);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+}
+
+/* ---------- Stat rail ---------- */
+
+.radar__stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0;
+  justify-content: start;
+  border-block: 1px solid var(--rule);
+  padding-block: var(--s-4);
+}
+.radar__stat {
+  padding-inline: var(--s-6);
+  border-left: 1px solid var(--rule);
+}
+.radar__stat:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.radar__stat--accent {
+  box-shadow: inset 0 2px 0 var(--indigo);
+}
+.radar__stat dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.radar__stat dd {
+  margin: 0;
+  font-size: var(--text-2xl);
+  color: var(--ink);
+  min-width: 2ch;
+  font-variant-numeric: tabular-nums;
+}
+.radar__stat--accent dd {
+  color: var(--indigo);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .radar__stat dd {
+    animation: stat-tick var(--dur) var(--ease-out);
+  }
+}
+@keyframes stat-tick {
+  from { transform: translateY(-2px) scale(1.04); opacity: 0.4; }
+  to { transform: none; opacity: 1; }
+}
+
+/* ---------- Filter toolbar ---------- */
+
+.radarfilter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+.radarfilter__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.fchip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.fchip:hover {
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+.fchip.is-on {
+  color: var(--indigo);
+  border-color: var(--indigo);
+  background: var(--indigo-ghost);
+}
+.fchip:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+.fchip:active {
+  transform: translateY(1px);
+}
+.radarfilter__right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.radarfilter__search input {
+  width: clamp(140px, 22vw, 220px);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.radarfilter__search input::placeholder {
+  color: var(--ink-3);
+}
+.radarfilter__search input:focus-visible {
+  outline: none;
+  border-color: var(--indigo);
+}
+.radarfilter__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  padding: 1px 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Intel: Alpha radar | Signals ---------- */
+
+.radar__intel {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: var(--s-5);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .radar__intel {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Two columns: Degen | Chain news ---------- */
+
+.radar__cols {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: var(--s-5);
+  align-items: start;
+}
+
+.feedcol__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-4);
+}
+.feedcol__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+.feedcol__idx {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--indigo);
+}
+.feedcol__src {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  color: var(--ink-3);
+}
+.feedcol__src.is-live {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo), transparent 55%);
+}
+.feedcol__sub {
+  margin-top: 3px;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  max-width: 42ch;
+}
+.feedcol__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  padding: 1px 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Feed ---------- */
+
+.feed {
+  display: grid;
+  align-content: start;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.05), var(--shadow-float);
+  max-height: clamp(360px, 62vh, 640px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 var(--s-3), #000 calc(100% - var(--s-3)), transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 var(--s-3), #000 calc(100% - var(--s-3)), transparent);
+}
+
+.sigrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-3) var(--s-5);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: inset 2px 0 0 transparent;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+.sigrow:last-child {
+  border-bottom: 0;
+}
+.sigrow:hover {
+  background: var(--paper-2);
+}
+.sigrow.is-open {
+  background: var(--paper-2);
+}
+
+/* Per-signal expand — a chevron toggle; the detail panel wraps to full width. */
+.sigrow__expand {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 11px;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.sigrow__expand:hover {
+  color: var(--ink);
+  background: var(--paper-3);
+}
+.sigrow__expand:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 1px;
+}
+.sigrow.is-open .sigrow__expand {
+  color: var(--indigo);
+  transform: rotate(180deg);
+}
+
+.sigrow__panel {
+  flex-basis: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-2);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--rule);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sigrow__panel {
+    animation: smpanel-in var(--dur) var(--ease-out);
+  }
+}
+.sigdetail {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: baseline;
+}
+.sigdetail dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.sigdetail dd {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  word-break: break-all;
+}
+.sigdetail a {
+  color: var(--indigo);
+  text-decoration: none;
+}
+.sigdetail a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 560px) {
+  .sigrow__panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Type accent rail — mirrors the chip dot colours, reinforces scannability. */
+.sigrow[data-type="smart-money"] { box-shadow: inset 2px 0 0 var(--indigo); }
+.sigrow[data-type="whale"] { box-shadow: inset 2px 0 0 var(--crimson); }
+.sigrow[data-type="kol"] { box-shadow: inset 2px 0 0 var(--amber); }
+.sigrow[data-type="listing"] { box-shadow: inset 2px 0 0 var(--ink-2); }
+.sigrow[data-type="unlock"] { box-shadow: inset 2px 0 0 var(--rule-strong); }
+
+/* The heaviest signals get more air and a larger detail line. */
+.sigrow[data-type="smart-money"],
+.sigrow[data-type="whale"],
+.sigrow.is-acted {
+  padding-block: var(--s-4);
+}
+.sigrow[data-type="smart-money"] .sigrow__detail,
+.sigrow[data-type="whale"] .sigrow__detail {
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+
+/* A freshly-arrived signal drops in from the top with a brief inner glow. Transform
+   + shadow only (never opacity), so a row is never invisible if the animation is
+   skipped; reduced motion drops it entirely. */
+@media (prefers-reduced-motion: no-preference) {
+  .sigrow.is-new {
+    animation: sig-in 560ms var(--ease-out);
+  }
+}
+@keyframes sig-in {
+  from {
+    transform: translateY(-14px);
+    box-shadow: inset 0 0 0 1px var(--indigo);
+  }
+  to {
+    transform: none;
+  }
+}
+/* Acted-on signals get a quiet lime wash — the ones that became trades (lime =
+   sealed / committed; amber stays reserved for money). */
+.sigrow.is-acted {
+  background: var(--indigo-ghost);
+}
+.sigrow.is-acted:hover {
+  background: color-mix(in oklab, var(--indigo-ghost), var(--indigo) 8%);
+}
+
+.sigrow > .chip {
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.sigrow__body {
+  flex: 1;
+  min-width: 0;
+}
+.sigrow__detail {
+  font-size: var(--text-base);
+  color: var(--ink);
+  line-height: 1.4;
+}
+.sigrow__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: 4px;
+  font-size: var(--text-xs);
+}
+.sigrow__actor {
+  color: var(--ink-2);
+}
+.sigrow__subject {
+  color: var(--indigo);
+}
+/* The verifiable source — a real settling tx on the explorer. */
+.sigrow__src {
+  font-size: 11px;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--rule-strong);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+a.sigrow__src:hover {
+  color: var(--indigo);
+  border-bottom-color: var(--indigo);
+}
+a.sigrow__src:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.sigrow__src--sim {
+  border-bottom: 0;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sigrow__acted {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--indigo);
+}
+
+.sigrow__side {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+  flex: none;
+  text-align: right;
+}
+.sigrow__when {
+  font-size: 10px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.strength {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+.strength i {
+  width: 3px;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--rule-strong);
+}
+.strength i:nth-child(1) { height: 45%; }
+.strength i:nth-child(2) { height: 72%; }
+.strength i:nth-child(3) { height: 100%; }
+.strength--1 i:nth-child(-n + 1),
+.strength--2 i:nth-child(-n + 2),
+.strength--3 i:nth-child(-n + 3) {
+  background: var(--ink-2);
+}
+
+.feed__empty {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-6) var(--s-5);
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+}
+.feed__emptydot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--indigo);
+  opacity: 0.6;
+}
+
+/* ---------- Skeletons (shared with the leaderboard) ---------- */
+
+.skel {
+  display: block;
+  background: var(--paper-3);
+  border-radius: var(--r-sm);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skel {
+    animation: skel 1.2s var(--ease-in-out) infinite;
+  }
+}
+@keyframes skel {
+  50% { opacity: 0.4; }
+}
+.sigrow--skel {
+  box-shadow: none;
+}
+.skel__chip {
+  width: 58px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  align-self: flex-start;
+  margin-top: 2px;
+}
+.skel__line {
+  height: 11px;
+  margin-bottom: 6px;
+}
+.skel__line--sm {
+  height: 9px;
+  margin-bottom: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .radar__cols {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+}
+
+@media (max-width: 720px) {
+  .radar__head {
+    flex-direction: column;
+  }
+  .radar__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    row-gap: var(--s-5);
+  }
+  .radar__stat:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .radarfilter {
+    align-items: stretch;
+  }
+  .radarfilter__right {
+    justify-content: space-between;
+  }
+  .radarfilter__search input {
+    width: 100%;
+  }
+  .sigrow {
+    flex-wrap: wrap;
+  }
+  .sigrow__side {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

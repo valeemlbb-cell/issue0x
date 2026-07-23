@@ -1,0 +1,23 @@
+{
+  "name": "issue0x-trader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Terminal trading bot that runs the issue0x strategy on Robinhood Chain — paper by default, non-custodial, with a transparent 2% operator fee on live trades.",
+  "scripts": {
+    "start": "tsx src/index.ts run",
+    "scan": "tsx src/index.ts scan",
+    "positions": "tsx src/index.ts positions",
+    "config": "tsx src/index.ts config",
+    "mcp": "tsx mcp/server.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.19.43",
+    "ethers": "^6.13.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

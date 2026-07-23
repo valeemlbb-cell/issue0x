@@ -1,0 +1,152 @@
+.howto__head {
+  max-width: 72ch;
+}
+.howto__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+.howto__title {
+  margin-top: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.howto__title em {
+  font-style: normal;
+  color: var(--indigo);
+}
+.howto__lede {
+  margin-top: var(--s-4);
+}
+.howto__cta {
+  margin-top: var(--s-5);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+.howto__req {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---- Two paths ---- */
+.howto__cols {
+  margin-top: var(--s-6);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+.howto__card {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: var(--s-5);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+  box-shadow: var(--edge-hi);
+}
+.howto__cardhead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+}
+.howto__idx {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--indigo);
+}
+.howto__cardhead h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+.howto__cardsub {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+}
+
+/* ---- Terminal code block ---- */
+.howto__code {
+  margin: var(--s-2) 0 0;
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  white-space: pre;
+}
+.howto__code code {
+  font: inherit;
+  color: inherit;
+}
+.howto__code .c-dim {
+  color: var(--ink-3);
+}
+.howto__code .c-key {
+  color: var(--indigo);
+}
+.howto__code .c-str {
+  color: var(--amber-deep);
+}
+.howto__note {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.55;
+}
+.howto__note code {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  color: var(--ink-2);
+  background: var(--paper);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
+/* ---- Disclosure strip ---- */
+.howto__disclose {
+  margin-top: var(--s-4);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid color-mix(in oklab, var(--indigo) 22%, var(--rule));
+  border-radius: var(--r-lg);
+  background: var(--indigo-ghost);
+}
+.howto__discitem {
+  display: grid;
+  gap: 4px;
+}
+.howto__dischead {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--indigo);
+}
+.howto__discbody {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 820px) {
+  .howto__cols,
+  .howto__disclose {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

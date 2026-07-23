@@ -1,0 +1,339 @@
+.alphapanel {
+  padding: var(--s-5) var(--s-5) var(--s-4);
+}
+.alphapanel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-4);
+}
+.alphapanel__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+.alphapanel__idx {
+  font-size: var(--text-sm);
+  color: var(--indigo);
+}
+.alphapanel__sub {
+  margin-top: 3px;
+  max-width: 62ch;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.alphapanel__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  padding: 1px 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+}
+
+.alpha__headrow {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 150px 150px;
+  gap: var(--s-4);
+  padding: 0 var(--s-2) var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--rule);
+}
+.alpha__headrow :last-child {
+  text-align: right;
+}
+
+.alphalist {
+  display: grid;
+}
+.alpharow {
+  border-bottom: 1px solid var(--rule);
+}
+.alpharow:last-child {
+  border-bottom: 0;
+}
+.alpharow__toggle {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 150px 150px;
+  align-items: center;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-3) var(--s-2);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.alpharow__toggle:hover {
+  background: var(--paper-2);
+}
+.alpharow__toggle:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: -2px;
+}
+.alpharow.is-open {
+  background: var(--paper-2);
+}
+
+/* Heat, banded */
+.alpharow__heat {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--ink-3);
+}
+.alpharow[data-band="hot"] .alpharow__heat {
+  color: var(--indigo);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--indigo) 55%, transparent);
+}
+.alpharow[data-band="warm"] .alpharow__heat {
+  color: var(--amber-deep);
+}
+
+.alpharow__id {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.alpharow__sym {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.alpharow__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.achip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.achip--state.achip--accumulating {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 40%, var(--rule));
+}
+.achip--state.achip--distributing {
+  color: var(--crimson);
+  border-color: color-mix(in oklab, var(--crimson) 45%, var(--rule));
+}
+.achip--grad {
+  color: var(--amber-deep);
+  border-color: color-mix(in oklab, var(--amber) 45%, var(--rule));
+}
+.achip--risk {
+  color: var(--crimson);
+  border-color: color-mix(in oklab, var(--crimson) 45%, var(--rule));
+}
+.achip--smart {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 45%, var(--rule));
+  background: var(--indigo-ghost);
+}
+.achip--mom-up {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 40%, var(--rule));
+}
+.achip--mom-down {
+  color: var(--crimson);
+  border-color: color-mix(in oklab, var(--crimson) 40%, var(--rule));
+}
+
+/* Market-wide stats line under the subtitle */
+.alphapanel__market {
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+
+/* Price sparkline in the expanded panel */
+.alphaspark {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--rule);
+}
+.alphaspark__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  flex: none;
+}
+.alphaspark__svg {
+  height: 34px;
+  max-width: 220px;
+}
+
+/* Graduation bar */
+.alpharow__grad {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.alpharow__gradtrack {
+  flex: 1;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+.alpharow__gradtrack i {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--indigo);
+  transform-origin: left;
+  transform: scaleX(var(--g, 0));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.alpharow__gradpct {
+  font-size: 11px;
+  color: var(--ink-3);
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* Net-flow */
+.alpharow__flow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  justify-self: end;
+}
+.alpharow__flowbar {
+  width: 46px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  background: var(--crimson);
+}
+.alpharow__flowbar .is-buy {
+  display: block;
+  height: 100%;
+  background: var(--indigo);
+  transform-origin: left;
+  transform: scaleX(var(--b, 0.5));
+}
+.alpharow__net {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-width: 6ch;
+  text-align: right;
+}
+.alpharow__net.is-pos {
+  color: var(--indigo);
+}
+.alpharow__net.is-neg {
+  color: var(--crimson);
+}
+.alpharow__chev {
+  color: var(--ink-3);
+  font-size: 10px;
+  transition: transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.alpharow.is-open .alpharow__chev {
+  transform: rotate(180deg);
+  color: var(--indigo);
+}
+
+/* Expanded */
+.alpharow__panel {
+  padding: var(--s-1) var(--s-2) var(--s-4) calc(40px + var(--s-4) + var(--s-2));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .alpharow__panel {
+    animation: smpanel-in var(--dur) var(--ease-out);
+  }
+}
+.alphastats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s-3) var(--s-5);
+}
+.alphastat dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.alphastat dd {
+  margin: 2px 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.alphastat dd.is-pos {
+  color: var(--indigo);
+}
+.alphastat dd.is-neg {
+  color: var(--crimson);
+}
+.alpharow__links {
+  display: flex;
+  gap: var(--s-4);
+  margin-top: var(--s-3);
+}
+.alpharow__links a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--indigo);
+  text-decoration: none;
+}
+.alpharow__links a:hover {
+  text-decoration: underline;
+}
+.alpharow__detail {
+  font-weight: 600;
+  padding: 2px 10px;
+  border: 1px solid color-mix(in oklab, var(--indigo) 45%, var(--rule));
+  border-radius: var(--r-pill);
+  background: var(--indigo-ghost);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.alpharow__detail:hover {
+  text-decoration: none !important;
+  border-color: var(--indigo);
+  background: color-mix(in oklab, var(--indigo-ghost), var(--indigo) 8%);
+}
+
+@media (max-width: 720px) {
+  .alpha__headrow,
+  .alpharow__toggle {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+  }
+  .alpha__headrow span:nth-child(3),
+  .alpharow__grad {
+    display: none;
+  }
+}

@@ -1,0 +1,46 @@
+.avatar {
+  display: block;
+  flex: none;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  object-fit: cover;
+  /* The agent mark is a detailed portrait, not a tile — smooth downscaling. */
+  image-rendering: auto;
+  background: var(--paper-3);
+}
+
+.avatar--32 {
+  width: 32px;
+  height: 32px;
+}
+.avatar--64 {
+  width: 64px;
+  height: 64px;
+}
+.avatar--128 {
+  width: 128px;
+  height: 128px;
+  border-radius: var(--r-md);
+}
+
+.avatar--empty {
+  display: grid;
+  place-items: center;
+  background: var(--paper-3);
+  color: var(--ink-2);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.avatar--empty.avatar--agent {
+  background: var(--indigo-ghost);
+  color: var(--indigo);
+}
+.avatar--empty.avatar--32 {
+  font-size: 13px;
+}
+.avatar--empty.avatar--64 {
+  font-size: 19px;
+}
+.avatar--empty.avatar--128 {
+  font-size: 38px;
+}

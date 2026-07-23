@@ -1,0 +1,72 @@
+.pticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.pticker__track {
+  display: flex;
+  width: max-content;
+}
+
+.pticker__run {
+  display: flex;
+  flex: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pticker__run {
+    animation: pticker 44s linear infinite;
+  }
+}
+@keyframes pticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.pcell {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-5);
+  border-right: 1px solid var(--rule);
+  white-space: nowrap;
+  font-size: var(--text-xs);
+}
+
+.pcell__sym {
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.pcell__price {
+  color: var(--ink-2);
+}
+
+.pcell__chg {
+  font-size: 11px;
+  letter-spacing: -0.01em;
+}
+.pcell__chg.is-pos {
+  color: var(--amber-deep);
+}
+.pcell__chg.is-neg {
+  color: var(--crimson);
+}
+
+/* A brief tick blip when the price updates — transform only, so it never hides the
+   number if the animation is skipped. */
+@media (prefers-reduced-motion: no-preference) {
+  .pcell__price {
+    animation: pblip 460ms var(--ease-out);
+  }
+}
+@keyframes pblip {
+  from {
+    transform: translateY(-2px);
+  }
+  to {
+    transform: none;
+  }
+}

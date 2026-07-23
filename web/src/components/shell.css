@@ -1,0 +1,365 @@
+/* ---------- Honest disclosure bar ---------- */
+
+.disclosure {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  padding: var(--s-2) var(--gutter);
+  background: var(--indigo-ghost);
+  border-bottom: 1px solid color-mix(in oklab, var(--indigo) 26%, transparent);
+  color: var(--indigo-deep);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.disclosure__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 2px var(--s-2);
+  border: 1px solid var(--indigo);
+  border-radius: 2px;
+  color: var(--indigo);
+  flex: none;
+}
+
+.disclosure p {
+  max-width: 96ch;
+}
+.disclosure__link {
+  color: var(--indigo);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: color-mix(in oklab, var(--paper) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  height: 60px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--indigo);
+  flex: none;
+}
+
+.brand__mark {
+  display: block;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--rule);
+  object-fit: cover;
+  box-shadow: 0 0 0 1px oklch(0 0 0 / 0.35);
+}
+
+.brand:hover .brand__mark {
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 1px var(--indigo), 0 0 16px var(--indigo-ghost);
+}
+
+/* The one wallet action reads as the accent, not another ghost desk-link. */
+.topbar__connect {
+  border-color: var(--indigo);
+  color: var(--indigo);
+}
+
+.brand__word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.topnav {
+  display: flex;
+  gap: var(--s-1);
+  margin-inline-start: auto;
+}
+
+.topnav__link {
+  position: relative;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-3);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+.topnav__link--run {
+  color: var(--indigo);
+}
+.topnav__link--run:hover {
+  color: var(--indigo);
+}
+/* a lime scaleX underline — the house motion language, shared with the footer */
+.topnav__link::after {
+  content: "";
+  position: absolute;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: 4px;
+  height: 1.5px;
+  background: var(--indigo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.topnav__link:hover::after {
+  transform: scaleX(1);
+}
+.topnav__link.is-active::after {
+  transform: scaleX(1);
+  opacity: 0.55;
+}
+
+.topnav__link:hover {
+  color: var(--ink);
+  background: var(--paper-2);
+}
+
+.topnav__link.is-active {
+  color: var(--indigo);
+  background: var(--indigo-ghost);
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex: none;
+}
+
+.themetoggle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: var(--s-2) var(--s-2);
+  border-radius: var(--r-sm);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.themetoggle:hover {
+  color: var(--ink);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  margin-top: var(--section);
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s-8) var(--s-5);
+  overflow: hidden;
+  /* a faint lime wash rising from the bottom edge for atmosphere on near-black */
+  background:
+    radial-gradient(120% 90% at 50% 130%, var(--indigo-ghost), transparent 60%);
+}
+
+.footer__inner {
+  position: relative;
+  display: grid;
+  gap: var(--s-7);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.4fr);
+  gap: var(--s-7);
+  align-items: start;
+}
+
+.footer__brandcol {
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+}
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--indigo);
+}
+.footer__brand .brand__word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.footer__statement {
+  max-width: 42ch;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+.footer__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.footer__statusdot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--indigo);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .footer__statusdot {
+    animation: radarpulse 2.4s var(--ease-out) infinite;
+  }
+}
+/* Simulation state must not glow "live green". */
+.footer__status--sim .footer__statusdot {
+  background: var(--ink-3);
+  animation: none;
+}
+
+.footer__nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+.footer__col {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+}
+.footer__coltitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--s-1);
+}
+.footer__link {
+  position: relative;
+  width: fit-content;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.footer__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--indigo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease-out);
+}
+.footer__link:hover {
+  color: var(--indigo);
+  transform: translateX(3px);
+}
+.footer__link:hover::after,
+.footer__link:focus-visible::after {
+  transform: scaleX(1);
+}
+.footer__link:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* The editorial signature — a giant ghosted wordmark bleeding off the bottom edge. */
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.8;
+  font-size: clamp(4rem, 20vw, 15rem);
+  letter-spacing: -0.03em;
+  margin-bottom: calc(var(--s-6) * -1);
+  user-select: none;
+  pointer-events: none;
+  /* faint fill fallback for browsers without text-stroke, then a lime ghost outline;
+     masked at the base so the bottom bar stays legible */
+  color: color-mix(in oklab, var(--ink) 4%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 0 55%, transparent 88%);
+  mask-image: linear-gradient(180deg, #000 0 55%, transparent 88%);
+}
+@supports (-webkit-text-stroke: 1px red) {
+  .footer__wordmark {
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--indigo) 42%, transparent);
+  }
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+.footer__fine {
+  max-width: var(--measure);
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+.footer__copy {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+  .footer__nav {
+    gap: var(--s-4);
+  }
+}
+@media (max-width: 460px) {
+  .footer__nav {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar__inner {
+    height: auto;
+    flex-wrap: wrap;
+    padding-block: var(--s-3);
+    gap: var(--s-3);
+  }
+  .topnav {
+    order: 3;
+    width: 100%;
+  }
+}

@@ -1,0 +1,455 @@
+.smpanel {
+  padding: var(--s-5) var(--s-5) var(--s-4);
+}
+
+.smpanel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-4);
+}
+.smpanel__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+.smpanel__idx {
+  font-size: var(--text-sm);
+  color: var(--indigo);
+}
+.smpanel__sub {
+  margin-top: 3px;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.smpanel__src {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.smpanel__srcdot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--ink-3);
+}
+.smpanel__src.is-live {
+  color: var(--indigo);
+}
+.smpanel__src.is-live .smpanel__srcdot {
+  background: var(--indigo);
+}
+
+/* ---------- Table header ---------- */
+
+.smlist__head {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: var(--s-4);
+  padding: 0 var(--s-2) var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--rule);
+}
+.smlist__head :last-child {
+  text-align: right;
+}
+
+/* ---------- Rows ---------- */
+
+.smlist {
+  display: grid;
+}
+
+.smrow {
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+}
+.smrow:last-child {
+  border-bottom: 0;
+}
+/* The collapsed row is the disclosure button. */
+.smrow__toggle {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-3) var(--s-2);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.smrow__toggle:hover {
+  background: var(--paper-2);
+  transform: translateX(2px);
+}
+.smrow__toggle:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: -2px;
+}
+.smrow__toggle:active {
+  transform: translateY(1px);
+}
+/* The leader leads — bigger P&L, lime bar, a restrained inset accent (not a flat
+   wash competing with amber-as-money). */
+.smrow.is-top {
+  background: var(--amber-ghost);
+  box-shadow: inset 2px 0 0 var(--amber-deep);
+}
+.smrow.is-top .smrow__toggle {
+  padding-block: var(--s-4);
+}
+.smrow.is-top .smrow__toggle:hover {
+  background: color-mix(in oklab, var(--amber-ghost), var(--amber) 6%);
+}
+.smrow__chev {
+  color: var(--ink-3);
+  font-size: 10px;
+  transition: transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.smrow.is-open .smrow__chev {
+  transform: rotate(180deg);
+  color: var(--indigo);
+}
+.smrow.is-open {
+  background: var(--paper-2);
+}
+.is-top .smrow__wallet {
+  font-size: var(--text-base);
+}
+.is-top .smrow__pnl {
+  font-size: var(--text-xl);
+}
+.is-top .smrow__bar i {
+  background: var(--indigo);
+}
+
+.smrow__rank {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-pill);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--paper-3);
+  font-variant-numeric: tabular-nums;
+}
+.rank--1 {
+  background: var(--amber-deep);
+  color: var(--paper);
+}
+.rank--2,
+.rank--3 {
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-2);
+}
+.rank--n {
+  background: transparent;
+}
+
+.smrow__id {
+  min-width: 0;
+}
+.smrow__idline {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* ---------- Wallet tier badges ---------- */
+.tier {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 6px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.tier--elite {
+  color: var(--indigo);
+  border-color: var(--indigo);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--indigo) 28%, transparent);
+}
+.tier--smart {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 45%, var(--rule));
+}
+.tier--sniper {
+  color: var(--indigo);
+  border-color: var(--indigo);
+  background: var(--indigo-ghost);
+}
+.tier--whale {
+  color: var(--amber-deep);
+  border-color: color-mix(in oklab, var(--amber) 45%, var(--rule));
+}
+.tier--active {
+  color: var(--ink-2);
+  border-color: var(--rule);
+}
+
+/* ---------- Realized / open split ---------- */
+.smrow__split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.smrow__splititem b {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.smrow__splititem b.is-pos {
+  color: var(--amber-deep);
+}
+.smrow__splititem b.is-neg {
+  color: var(--crimson);
+}
+.smtag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+}
+.smtag--diamond {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 40%, var(--rule));
+}
+.smtag--flipper {
+  color: var(--ink-2);
+  border-color: var(--rule);
+}
+.smtag--fresh {
+  color: var(--crimson);
+  border-color: color-mix(in oklab, var(--crimson) 40%, var(--rule));
+}
+.smrow__wallet {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+/* ---------- Expanded detail panel ---------- */
+
+.smrow__panel {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-1) var(--s-2) var(--s-4) calc(28px + var(--s-4) + var(--s-2));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .smrow__panel {
+    animation: smpanel-in var(--dur) var(--ease-out);
+  }
+}
+@keyframes smpanel-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.smrow__addr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+.smrow__addrfull {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  word-break: break-all;
+}
+.smrow__copy {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-2);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.smrow__copy:hover {
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+.smrow__copy:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+.smrow__copy--go {
+  color: var(--indigo);
+  border-color: color-mix(in oklab, var(--indigo) 45%, var(--rule));
+  background: var(--indigo-ghost);
+  font-weight: 600;
+}
+.smrow__copy--go:hover {
+  border-color: var(--indigo);
+}
+.smrow__simnote {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* Per-token P&L breakdown */
+.smbreak__head,
+.smtok {
+  display: grid;
+  grid-template-columns: minmax(60px, auto) minmax(0, 1fr) auto;
+  gap: var(--s-3);
+  align-items: baseline;
+}
+.smbreak__head {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+}
+.smbreak__head :last-child {
+  text-align: right;
+}
+.smbreak__list {
+  display: grid;
+  gap: 2px;
+  margin-top: var(--s-2);
+}
+.smtok {
+  padding: 2px 0;
+}
+.smtok__sym {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.smtok__meta {
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.smtok__pnl {
+  text-align: right;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.smtok__pnl.is-pos {
+  color: var(--amber-deep);
+}
+.smtok__pnl.is-neg {
+  color: var(--crimson);
+}
+.smbreak__note {
+  margin-top: var(--s-2);
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.smrow__byline {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.smrow__bar {
+  display: block;
+  height: 3px;
+  margin-top: 6px;
+  max-width: 240px;
+  background: var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.smrow__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--ink-2);
+  transform-origin: left;
+  transform: scaleX(var(--v, 0)); /* scaleX, not width — compositor-friendly */
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .smrow__bar i {
+    transition: none;
+  }
+}
+
+.smrow__pnl {
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.smrow__pnl.is-pos {
+  color: var(--amber-deep);
+}
+.smrow__pnl.is-neg {
+  color: var(--crimson);
+}
+
+.smrow__empty {
+  padding: var(--s-5) var(--s-2);
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+}
+
+/* ---------- Skeleton (uses shared .skel from radar.css) ---------- */
+
+.smrow--skel {
+  pointer-events: none;
+}
+.skel__rank {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-pill);
+}
+.skel__pnl {
+  width: 56px;
+  height: 14px;
+  justify-self: end;
+}
+
+.smpanel__note {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.6;
+}

@@ -1,0 +1,63 @@
+.seal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  /* Hard-cornered — a stamp, not a pill. */
+  border-radius: 2px;
+}
+
+.seal--md {
+  font-size: var(--text-xs);
+  padding: 3px var(--s-2);
+}
+.seal--sm {
+  font-size: 10px;
+  padding: 2px 6px;
+}
+
+.seal__glyph {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.seal--open {
+  color: var(--indigo);
+  background: var(--indigo-ghost);
+  border-color: color-mix(in oklab, var(--indigo) 30%, transparent);
+}
+.seal--won {
+  color: var(--amber-deep);
+  background: var(--amber-ghost);
+  border-color: color-mix(in oklab, var(--amber) 40%, transparent);
+}
+.seal--lost {
+  color: var(--crimson);
+  background: var(--crimson-ghost);
+  border-color: color-mix(in oklab, var(--crimson) 34%, transparent);
+}
+
+/* ---- inline outcome ---- */
+
+.outcome {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.outcome--open {
+  color: var(--indigo);
+}
+.outcome--won {
+  color: var(--amber-deep);
+}
+.outcome--lost {
+  color: var(--crimson);
+}

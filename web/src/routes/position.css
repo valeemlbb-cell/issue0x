@@ -1,0 +1,174 @@
+.position {
+  padding-block: var(--s-6) var(--s-9);
+  display: grid;
+  gap: var(--s-6);
+}
+
+.position__back {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.position__back:hover {
+  color: var(--indigo);
+}
+
+.position__head {
+  display: grid;
+  gap: var(--s-3);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.position__tags {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.position__subject {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.position__title {
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  max-width: 24ch;
+}
+
+.position__intent {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--indigo);
+}
+
+.position__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--s-5);
+  align-items: start;
+}
+
+.position__h2 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--s-4);
+}
+
+/* ---- Sealed card ---- */
+
+.sealed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-3);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+.sealed dt {
+  font-size: 10px;
+  color: var(--ink-3);
+  margin-bottom: 3px;
+}
+.sealed dd {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.sealed__note {
+  margin-top: var(--s-4);
+  font-size: var(--text-base);
+  font-style: italic;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.sealed__hash {
+  margin-top: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+}
+.sealed__hashlabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.sealed__hash code {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.position__fine {
+  margin-top: var(--s-4);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.65;
+}
+
+/* ---- Outcome card ---- */
+
+.position__outcome {
+  align-self: stretch;
+}
+
+.outcomebig {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.outcomebig__pnl {
+  font-size: var(--text-4xl, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.outcomebig__pending {
+  font-size: var(--text-2xl);
+  color: var(--indigo);
+}
+.outcomebig__sub {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+.outcomebig__meta {
+  display: flex;
+  gap: var(--s-6);
+}
+.outcomebig__meta dt {
+  font-size: 10px;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.outcomebig__meta dd {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.outcomebig__split {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.6;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 760px) {
+  .position__grid {
+    grid-template-columns: 1fr;
+  }
+}

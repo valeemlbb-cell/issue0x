@@ -1,0 +1,27 @@
+{
+  "mode": "paper",
+  "apiBase": "https://issue0x.com/agent",
+  "intervalSec": 60,
+
+  "rpcUrl": "https://rpc.mainnet.chain.robinhood.com",
+  "chainId": 4663,
+  "keyFile": null,
+  "routerAddress": null,
+  "wethAddress": null,
+
+  "feeAcknowledged": false,
+  "riskAcknowledged": false,
+
+  "strategy": {
+    "minHeat": 60,
+    "requireAccumulating": true,
+    "requireSmartInflow": true,
+    "avoidRisky": true,
+    "positionSizeEth": 0.02,
+    "maxPositions": 5,
+    "takeProfitPct": 0.4,
+    "stopLossPct": 0.2,
+    "maxHoldMin": 180,
+    "exitOnDistribution": true
+  }
+}

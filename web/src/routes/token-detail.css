@@ -1,0 +1,488 @@
+.tokendetail {
+  padding-block: var(--s-6) var(--s-8);
+  display: grid;
+  gap: var(--s-4);
+}
+/* On wide screens, lay the lower sections in two neat columns; header, band and
+   footer stay full-width so the page fills the space without stretching one column. */
+@media (min-width: 1100px) {
+  .tokendetail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .tokendetail > .tkd__back,
+  .tokendetail > .tkd__head,
+  .tokendetail > .tkd__band,
+  .tokendetail > .tkd__foot {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Back link ---------- */
+.tkd__back {
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.tkd__back:hover {
+  color: var(--indigo);
+}
+
+/* ---------- Header ---------- */
+.tkd__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4) var(--s-5);
+  padding: var(--s-5);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+  box-shadow: var(--edge-hi), var(--shadow-card);
+}
+.tkd__heatwrap {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.tkd__heat {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.tkd__heatlabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+.tkd__head[data-band="hot"] .tkd__heatwrap {
+  border-color: color-mix(in oklab, var(--indigo) 55%, var(--rule));
+  box-shadow: 0 0 22px color-mix(in oklab, var(--indigo) 22%, transparent);
+}
+.tkd__head[data-band="hot"] .tkd__heat {
+  color: var(--indigo);
+  text-shadow: 0 0 14px color-mix(in oklab, var(--indigo) 55%, transparent);
+}
+.tkd__head[data-band="warm"] .tkd__heat {
+  color: var(--amber-deep);
+}
+
+.tkd__id {
+  min-width: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+.tkd__sym {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.tkd__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.tkd__addr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+.tkd__addrfull {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  word-break: break-all;
+}
+.tkd__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--indigo);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tkd__link:hover {
+  text-decoration: underline;
+}
+.tkd__price {
+  text-align: right;
+  display: grid;
+  gap: 3px;
+  justify-items: end;
+}
+.tkd__pricebig {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.tkd__pricecap {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---------- Graduation + sparkline band ---------- */
+.tkd__band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4) var(--s-6);
+}
+.tkd__grad {
+  min-width: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+.tkd__gradlabel {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+.tkd__gradtrack {
+  height: 7px;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+.tkd__gradtrack i {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--indigo);
+  transform-origin: left;
+  transform: scaleX(var(--g, 0));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.tkd__spark {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+.tkd__sparklabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.tkd__sparksvg {
+  height: 44px;
+  width: 260px;
+  max-width: 100%;
+}
+.tkd__sparkwait {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---------- Sections ---------- */
+.tkd__section {
+  display: grid;
+  gap: var(--s-4);
+}
+.tkd__section--risk {
+  border-color: color-mix(in oklab, var(--crimson) 22%, var(--rule));
+}
+.tkd__h2 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+.tkd__idx {
+  font-size: var(--text-sm);
+  color: var(--indigo);
+}
+.tkd__section--risk .tkd__idx {
+  color: var(--crimson);
+}
+.tkd__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  padding: 1px 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+}
+
+/* ---------- Stat grid ---------- */
+.tkd__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s-4) var(--s-5);
+}
+.tkd__stat dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.tkd__stat dd {
+  margin: 3px 0 0;
+  font-size: var(--text-base);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.tkd__stat--big {
+  grid-column: span 2;
+}
+.tkd__stat--big dd {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+.tkd__stat dd.is-pos {
+  color: var(--indigo);
+}
+.tkd__stat dd.is-neg {
+  color: var(--crimson);
+}
+.tkd__risknote {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  line-height: 1.55;
+  max-width: 74ch;
+}
+
+/* ---------- Smart buyers ---------- */
+.tkd__buyhead,
+.tkd__buyer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px 110px;
+  gap: var(--s-3);
+  align-items: center;
+}
+.tkd__buyhead {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+}
+.tkd__buyhead :nth-child(2),
+.tkd__buyhead :last-child,
+.tkd__buyerbuy,
+.tkd__buyerpnl {
+  text-align: right;
+}
+.tkd__buylist {
+  display: grid;
+  gap: 0;
+}
+.tkd__buyer {
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.tkd__buyer:last-child {
+  border-bottom: 0;
+}
+.tkd__buyerid {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-width: 0;
+}
+.tkd__buyerwallet {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.tkd__buyerwallet:hover {
+  color: var(--indigo);
+  text-decoration: underline;
+}
+.tkd__buyerbuy {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.tkd__buyerpnl {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.tkd__buyerpnl.is-pos {
+  color: var(--amber-deep);
+}
+.tkd__buyerpnl.is-neg {
+  color: var(--crimson);
+}
+
+/* ---------- Trade tape ---------- */
+.tkd__tape {
+  display: grid;
+  gap: 0;
+  max-height: 520px;
+  overflow-y: auto;
+}
+.tkd__trade {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 90px 70px auto;
+  gap: var(--s-3);
+  align-items: center;
+  padding: var(--s-2) var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--text-sm);
+}
+.tkd__trade:last-child {
+  border-bottom: 0;
+}
+.tkd__trade:hover {
+  background: var(--paper-2);
+}
+.tkd__tradeside {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 6px;
+  border-radius: 2px;
+  text-align: center;
+}
+.tkd__trade.is-buy .tkd__tradeside {
+  color: var(--indigo);
+  border: 1px solid color-mix(in oklab, var(--indigo) 45%, var(--rule));
+  background: var(--indigo-ghost);
+}
+.tkd__trade.is-sell .tkd__tradeside {
+  color: var(--crimson);
+  border: 1px solid color-mix(in oklab, var(--crimson) 40%, var(--rule));
+}
+.tkd__tradewallet {
+  color: var(--ink-2);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tkd__tradewallet:hover {
+  color: var(--indigo);
+}
+.tkd__tradeusd {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.tkd__trade.is-buy .tkd__tradeusd {
+  color: var(--ink);
+}
+.tkd__tradetime {
+  text-align: right;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.tkd__tradetx {
+  font-size: var(--text-xs);
+  color: var(--indigo);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tkd__tradetx:hover {
+  text-decoration: underline;
+}
+.tkd__tradetx--none {
+  color: var(--ink-3);
+}
+
+/* ---------- States ---------- */
+.tkd__loading {
+  padding: var(--s-8) var(--s-4);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+}
+.tkd__empty {
+  padding: var(--s-7) var(--s-4) var(--s-8);
+  display: grid;
+  gap: var(--s-4);
+  max-width: 60ch;
+}
+.tkd__empty h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+.tkd__emptylinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.tkd__cta {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--paper);
+  background: var(--indigo);
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.tkd__cta:hover {
+  opacity: 0.88;
+}
+.tkd__cta--ghost {
+  color: var(--indigo);
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--indigo) 45%, var(--rule));
+}
+
+.tkd__foot {
+  margin-top: var(--s-2);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .tkd__head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .tkd__price {
+    grid-column: 1 / -1;
+    text-align: left;
+    justify-items: start;
+  }
+  .tkd__band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tkd__spark {
+    justify-items: start;
+  }
+  .tkd__stat--big {
+    grid-column: span 1;
+  }
+  .tkd__trade {
+    grid-template-columns: 40px minmax(0, 1fr) 72px;
+    row-gap: 2px;
+  }
+  .tkd__tradetime,
+  .tkd__tradetx {
+    display: none;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "_comment": "Curated, verified smart-money + KOL wallets on Robinhood Chain. Copy to watchlist.json and fill with addresses YOU have verified. The radar tags any on-chain signal from these wallets with the label below. Never add an address you haven't checked on the explorer — a wrong 'smart money' tag is worse than none.",
+  "_sources": [
+    "https://robinhoodchain.blockscout.com  — official explorer: verify any address, its balance, and its trade history here first",
+    "https://thecognitiveos.com  — tracks 400+ scored smart-money wallets on Robinhood Chain (verify their picks yourself)",
+    "https://robinscan.xyz  — Robinhood Chain explorer + whale tracker",
+    "https://frontrun.pro  — 6M+ labelled KOL / smart-money wallets (Solana-first; use for KOL wallet discovery)"
+  ],
+  "wallets": [
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "label": "example — replace me",
+      "tag": "smart-money",
+      "source": "verified on blockscout, YYYY-MM-DD"
+    }
+  ]
+}
